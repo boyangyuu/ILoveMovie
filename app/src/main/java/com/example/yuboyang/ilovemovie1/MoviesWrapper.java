@@ -2,6 +2,8 @@ package com.example.yuboyang.ilovemovie1;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 /**
  * Created by yuboyang on 10/8/17.
  */

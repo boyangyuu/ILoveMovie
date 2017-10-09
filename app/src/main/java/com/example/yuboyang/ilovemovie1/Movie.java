@@ -9,7 +9,7 @@ import com.google.gson.annotations.SerializedName;
  * Created by yuboyang on 10/8/17.
  */
 
-class Movie implements Parcelable{
+public class Movie implements Parcelable{
     private String id;
     private String overview;
     @SerializedName("release_date")

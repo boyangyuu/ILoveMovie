@@ -2,15 +2,33 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.neenbedankt.android-apt'
 apply plugin: 'me.tatarka.retrolambda'
 
+def getProperty(String filename, String propName) {
+    def propsFile = rootProject.file(filename)
+    if (propsFile.exists()) {
+        def props = new Properties()
+        props.load(new FileInputStream(propsFile))
+        if (props[propName] != null) {
+            return props[propName]
+        } else {
+            print("No such property " + propName + " in file " + filename);
+        }
+    } else {
+        print(filename + " does not exist!")
+    }
+}
+
 android {
-    compileSdkVersion 26
-    buildToolsVersion "26.0.2"
+    compileSdkVersion 25
+    buildToolsVersion "25.0.2"
     defaultConfig {
         applicationId "com.example.yuboyang.ilovemovie1"
-        minSdkVersion 15
-        targetSdkVersion 26
+        minSdkVersion 16
+        targetSdkVersion 25
         versionCode 1
         versionName "1.0"
+
+        buildConfigField "String", "TMDB_API_KEY", "\"${getProperty("local.properties", "tmdb_api_key")}\""
+        buildConfigField "String", "TMDB_BASE_URL", "\"http://api.themoviedb.org/\""
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -18,6 +36,20 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+
+    lintOptions {
+        disable 'InvalidPackage'
+    }
+
+    packagingOptions {
+        exclude 'META-INF/services/javax.annotation.processing.Processor'
+        exclude 'META-INF/rxjava.properties'
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 }
 
@@ -32,6 +64,7 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
 
     //Support
+
     compile "com.android.support:design:${supportLibVersion}"
     compile "com.android.support:support-v4:${supportLibVersion}"
     compile "com.android.support:support-annotations:${supportLibVersion}"
@@ -75,8 +108,8 @@ dependencies {
 
     // Tests
     testCompile 'junit:junit:4.12'
-    testCompile 'org.mockito:mockito-core:1.10.19'
-    testCompile "org.robolectric:robolectric:3.1.4"
+    androidTestCompile 'org.mockito:mockito-core:1.10.19'
+    androidTestCompile  "org.robolectric:robolectric:3.1.4"
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
