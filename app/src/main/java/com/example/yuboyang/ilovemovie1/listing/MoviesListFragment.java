@@ -63,6 +63,7 @@ public class MoviesListFragment extends Fragment implements MoviesListingView {
 
     private void initLayout() {
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getActivity(), 2);
+        moviesListing.setHasFixedSize(false);
         moviesListing.setLayoutManager(layoutManager);
         adapter = new MoviesListingAdapter(this);
         moviesListing.setAdapter(adapter);

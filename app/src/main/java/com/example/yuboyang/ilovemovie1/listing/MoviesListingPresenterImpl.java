@@ -37,7 +37,6 @@ public class MoviesListingPresenterImpl implements MoviesListingPresenter {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(this::onMovieFetchSuccess, this::onMoviesFetchFailed);
-        System.out.println("displayMovies");
 
     }
 
@@ -46,7 +45,8 @@ public class MoviesListingPresenterImpl implements MoviesListingPresenter {
     }
 
     private void onMovieFetchSuccess(List<Movie> movies) {
-        System.out.println("displayMovies");
+        System.out.println("onMovieFetchSuccess");
+        System.out.println(movies);
         this.view.showMovies(movies);
 
     }

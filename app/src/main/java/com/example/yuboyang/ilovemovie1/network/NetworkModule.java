@@ -23,6 +23,14 @@ import java.util.concurrent.TimeUnit;
 @Module
 public class NetworkModule {
     public static final int CONNECT_TIMEOUT_IN_MS = 30000;
+
+    @Provides
+    @Singleton
+    Interceptor requestInterceptor(RequestInterceptor interceptor) {
+        return interceptor;
+    }
+
+
     @Provides
     @Singleton
     OkHttpClient okHttpClient(RequestInterceptor requestInterceptor) {

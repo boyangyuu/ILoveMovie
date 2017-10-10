@@ -10,10 +10,13 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.yuboyang.ilovemovie1.Constants;
 import com.example.yuboyang.ilovemovie1.Movie;
 import com.example.yuboyang.ilovemovie1.R;
 import com.example.yuboyang.ilovemovie1.details.MovieDetailsActivity;
+import com.example.yuboyang.ilovemovie1.util.Api;
 
 import junit.framework.Assert;
 
@@ -87,8 +90,11 @@ class MoviesListingAdapter extends RecyclerView.Adapter<MoviesListingAdapter.Vie
         holder.itemView.setOnClickListener(holder);
         holder.movie = movies.get(position);
         holder.tv_item_movie_name.setText(holder.movie.getTitle());
-        // TODO: 10/9/17 imageview glide
-
+        Glide.with(this.moviesListFragment)
+                .load(Api.getPosterPath(holder.movie.getPosterPath()))
+                .asBitmap()
+                .diskCacheStrategy(DiskCacheStrategy.RESULT)
+                .into(holder.iv_item_movie_poster);
     }
 
     @Override

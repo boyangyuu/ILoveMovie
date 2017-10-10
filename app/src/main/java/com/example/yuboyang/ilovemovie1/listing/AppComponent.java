@@ -14,6 +14,4 @@ import dagger.Component;
 @Component(modules = {ListModule.class, NetworkModule.class})
 public interface AppComponent {
     MoviesListFragment inject(MoviesListFragment activity);
-    MoviesListingActivity inject(MoviesListingActivity activity);
-    MovieDetailsActivity inject(MovieDetailsActivity activity);
 }

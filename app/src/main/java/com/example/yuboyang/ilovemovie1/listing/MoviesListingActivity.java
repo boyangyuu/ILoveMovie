@@ -23,16 +23,4 @@ public class MoviesListingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
     }
-    private void onTest(Integer i) {
-        System.out.println("yby" + i);
-    }
-
-    private void onMovieFetchFailed(Throwable throwable) {
-        System.out.println("error");
-    }
-
-    private void onMovieFetchSuccess(List<Movie> movies) {
-        System.out.println(movies);
-    }
-
 }
