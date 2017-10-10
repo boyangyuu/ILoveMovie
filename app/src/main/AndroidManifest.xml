@@ -20,7 +20,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".details.MovieDetailActivity"
+            android:name=".details.MovieDetailsActivity"
             android:parentActivityName=".listing.MoviesListingActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data

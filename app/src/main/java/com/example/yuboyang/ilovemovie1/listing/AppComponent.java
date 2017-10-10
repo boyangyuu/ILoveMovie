@@ -1,7 +1,6 @@
 package com.example.yuboyang.ilovemovie1.listing;
 
-import android.app.Activity;
-
+import com.example.yuboyang.ilovemovie1.details.MovieDetailsActivity;
 import com.example.yuboyang.ilovemovie1.network.NetworkModule;
 
 import javax.inject.Singleton;
@@ -13,6 +12,8 @@ import dagger.Component;
  */
 @Singleton
 @Component(modules = {ListModule.class, NetworkModule.class})
-public interface ListComponent {
+public interface AppComponent {
+    MoviesListFragment inject(MoviesListFragment activity);
     MoviesListingActivity inject(MoviesListingActivity activity);
+    MovieDetailsActivity inject(MovieDetailsActivity activity);
 }

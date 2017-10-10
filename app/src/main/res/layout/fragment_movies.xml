@@ -2,13 +2,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".listing.MoviesListingActivity">
+    tools:context=".listing.MoviesListFragment">
 
-    <fragment
-        android:id="@+id/fragment_list"
-        android:name="com.example.yuboyang.ilovemovie1.listing.MoviesListFragment"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/movies_listing"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:layout="@layout/fragment_movies"/>
+        android:scrollbars="vertical"
+        android:visibility="gone"/>
 </FrameLayout>

@@ -13,9 +13,16 @@ import dagger.Provides;
 @Singleton
 @Module
 public class ListModule {
+    @Singleton
     @Provides
     MoviesListingInteractor moviesListingInteractor(MovieWebService webService) {
         return new MoviesListingInteractorImpl(webService);
+    }
+
+    @Singleton
+    @Provides
+    MoviesListingPresenter moviesListingPresenter(MoviesListingInteractor interactor) {
+        return new MoviesListingPresenterImpl(interactor);
     }
 
 }

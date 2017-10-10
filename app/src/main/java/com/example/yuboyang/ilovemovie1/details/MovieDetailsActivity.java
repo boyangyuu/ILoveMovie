@@ -9,7 +9,7 @@ import android.view.View;
 
 import com.example.yuboyang.ilovemovie1.R;
 
-public class MovieDetailActivity extends AppCompatActivity {
+public class MovieDetailsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

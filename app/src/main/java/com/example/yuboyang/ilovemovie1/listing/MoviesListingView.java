@@ -5,7 +5,7 @@ import com.example.yuboyang.ilovemovie1.Movie;
 import java.util.List;
 
 /**
- * @author arun
+ * @author boyangYU
  */
 interface MoviesListingView
 {
