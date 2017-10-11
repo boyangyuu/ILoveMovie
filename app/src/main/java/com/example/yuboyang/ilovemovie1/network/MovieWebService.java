@@ -1,6 +1,9 @@
 package com.example.yuboyang.ilovemovie1.network;
 
 import com.example.yuboyang.ilovemovie1.MoviesWrapper;
+import com.example.yuboyang.ilovemovie1.ReviewWrapper;
+import com.example.yuboyang.ilovemovie1.Video;
+import com.example.yuboyang.ilovemovie1.VideoWrapper;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;
@@ -19,9 +22,8 @@ public interface MovieWebService {
     Observable<MoviesWrapper> highestRatedMovies();
 
     @GET("3/movie/{movieId}/videos")
-    Observable<MoviesWrapper> trailers(@Path("movieId") String movieId);
+    Observable<VideoWrapper> trailers(@Path("movieId") String movieId);
 
     @GET("3/movie/{movieId}/reviews")
-    Observable<MoviesWrapper> reviews(@Path("movieId") String movieId);
-
+    Observable<ReviewWrapper> reviews(@Path("movieId") String movieId);
 }

@@ -115,9 +115,14 @@ public class Movie implements Parcelable{
     }
 
     @Override
-    public void writeToParcel(Parcel parcel, int i) {
+    public void writeToParcel(Parcel parcel, int flags) {
         parcel.writeString(id);
         parcel.writeString(overview);
+        parcel.writeString(releaseDate);
+        parcel.writeString(posterPath);
+        parcel.writeString(backdropPath);
+        parcel.writeString(title);
+        parcel.writeDouble(voteAverage);
     }
 
 
