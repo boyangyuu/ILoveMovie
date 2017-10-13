@@ -13,8 +13,6 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Title"
         android:textColor="@android:color/white"
         tools:text="Trailers"/>
-        <!--android:visibility="gone"-->
-        <!--/>-->
 
     <HorizontalScrollView
         android:id="@+id/trailers_container"

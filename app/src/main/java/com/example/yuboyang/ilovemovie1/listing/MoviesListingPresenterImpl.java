@@ -45,10 +45,7 @@ public class MoviesListingPresenterImpl implements MoviesListingPresenter {
     }
 
     private void onMovieFetchSuccess(List<Movie> movies) {
-        System.out.println("onMovieFetchSuccess");
-        System.out.println(movies);
         this.view.showMovies(movies);
-
     }
     @Override
     public void showLoading() {
