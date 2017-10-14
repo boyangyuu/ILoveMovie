@@ -12,7 +12,6 @@ import com.example.yuboyang.ilovemovie1.network.NetworkModule;
  */
 
 public class BaseApplication extends Application {
-
     public static AppComponent getAppComponent() {
         return DaggerAppComponent.builder()
                 .listModule(new ListModule())
