@@ -27,7 +27,6 @@ public class MoviesListingPresenterImpl implements MoviesListingPresenter {
     @Override
     public void setView(MoviesListingView view) {
         this.view = view;
-//        displayMovies();
     }
 
     @Override
@@ -37,7 +36,6 @@ public class MoviesListingPresenterImpl implements MoviesListingPresenter {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(this::onMovieFetchSuccess, this::onMoviesFetchFailed);
-
     }
 
     private void onMoviesFetchFailed(Throwable throwable) {

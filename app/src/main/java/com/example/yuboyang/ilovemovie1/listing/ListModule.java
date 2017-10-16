@@ -1,5 +1,8 @@
 package com.example.yuboyang.ilovemovie1.listing;
 
+import android.content.Context;
+
+import com.example.yuboyang.ilovemovie1.listing.sort.SortPreferance;
 import com.example.yuboyang.ilovemovie1.network.MovieWebService;
 
 import javax.inject.Singleton;
@@ -15,8 +18,14 @@ import dagger.Provides;
 public class ListModule {
     @Singleton
     @Provides
-    MoviesListingInteractor moviesListingInteractor(MovieWebService webService) {
-        return new MoviesListingInteractorImpl(webService);
+    SortPreferance sortPreferance(Context context) {
+        return new SortPreferance(context);
+    }
+
+    @Singleton
+    @Provides
+    MoviesListingInteractor moviesListingInteractor(MovieWebService webService, SortPreferance sortPreferance) {
+        return new MoviesListingInteractorImpl(webService, sortPreferance);
     }
 
     @Singleton
@@ -24,5 +33,4 @@ public class ListModule {
     MoviesListingPresenter moviesListingPresenter(MoviesListingInteractor interactor) {
         return new MoviesListingPresenterImpl(interactor);
     }
-
 }

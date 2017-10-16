@@ -1,9 +1,6 @@
 package com.example.yuboyang.ilovemovie1;
 
 import android.app.Application;
-
-import com.example.yuboyang.ilovemovie1.listing.DaggerAppComponent;
-import com.example.yuboyang.ilovemovie1.listing.AppComponent;
 import com.example.yuboyang.ilovemovie1.listing.ListModule;
 import com.example.yuboyang.ilovemovie1.network.NetworkModule;
 
@@ -12,8 +9,14 @@ import com.example.yuboyang.ilovemovie1.network.NetworkModule;
  */
 
 public class BaseApplication extends Application {
-    public static AppComponent getAppComponent() {
+    BaseApplication() {
+
+    }
+
+    public AppComponent getAppComponent() {
+//        return null;
         return DaggerAppComponent.builder()
+                .appModule(new AppModule(this))
                 .listModule(new ListModule())
                 .networkModule(new NetworkModule())
                 .build();

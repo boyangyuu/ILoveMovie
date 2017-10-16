@@ -49,7 +49,8 @@ public class MoviesListFragment extends Fragment implements MoviesListingView {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        BaseApplication.getAppComponent().inject(this);
+        BaseApplication application = (BaseApplication)getActivity().getApplication();
+        application.getAppComponent().inject(this);
     }
 
     @Nullable

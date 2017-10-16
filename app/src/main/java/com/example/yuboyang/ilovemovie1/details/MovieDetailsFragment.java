@@ -1,7 +1,6 @@
 package com.example.yuboyang.ilovemovie1.details;
 
 import android.content.Context;
-import android.nfc.Tag;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -17,18 +16,15 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.yuboyang.ilovemovie1.BaseApplication;
 import com.example.yuboyang.ilovemovie1.Constants;
 import com.example.yuboyang.ilovemovie1.Movie;
 import com.example.yuboyang.ilovemovie1.R;
 import com.example.yuboyang.ilovemovie1.Review;
 import com.example.yuboyang.ilovemovie1.Video;
-import com.example.yuboyang.ilovemovie1.listing.AppComponent;
 import com.example.yuboyang.ilovemovie1.util.Api;
 
 import java.util.List;
-import java.util.zip.Inflater;
 
 import javax.inject.Inject;
 
@@ -81,7 +77,8 @@ public class MovieDetailsFragment extends Fragment implements MovieDetailView {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        BaseApplication.getAppComponent().inject(this);
+        BaseApplication application = (BaseApplication) getActivity().getApplication();
+        application.getAppComponent().inject(this);
         Movie movie = getActivity().getIntent().getParcelableExtra(Constants.MOVIE);
         this.movie = movie;
     }

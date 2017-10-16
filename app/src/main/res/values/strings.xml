@@ -12,4 +12,6 @@
     <string name="favorites">Favorites</string>
     <string name="highest_rated">Highest Rated</string>
     <string name="most_popular">Most Popular</string>
+    <string name="preferSortType">preferSortType</string>
+    <string name="prefer_popular">prefer_popular</string>
 </resources>
