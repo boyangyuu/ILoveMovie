@@ -1,6 +1,5 @@
 package com.example.yuboyang.ilovemovie1.listing;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
@@ -18,11 +17,8 @@ import com.example.yuboyang.ilovemovie1.R;
 import com.example.yuboyang.ilovemovie1.details.MovieDetailsActivity;
 import com.example.yuboyang.ilovemovie1.util.Api;
 
-import junit.framework.Assert;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.zip.Inflater;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -36,10 +32,10 @@ import static junit.framework.Assert.assertTrue;
 class MoviesListingAdapter extends RecyclerView.Adapter<MoviesListingAdapter.ViewHolder> {
 
     private List<Movie> movies;
-    private final MoviesListFragment moviesListFragment;
+    private final MoviesListingFragment moviesListingFragment;
 
-    public MoviesListingAdapter(MoviesListFragment moviesListFragment) {
-        this.moviesListFragment = moviesListFragment;
+    public MoviesListingAdapter(MoviesListingFragment moviesListingFragment) {
+        this.moviesListingFragment = moviesListingFragment;
         this.movies = new ArrayList<>();
     }
 
@@ -68,12 +64,12 @@ class MoviesListingAdapter extends RecyclerView.Adapter<MoviesListingAdapter.Vie
 
         @Override
         public void onClick(View v) {
-            Intent intent = new Intent(MoviesListingAdapter.this.moviesListFragment.getContext(), MovieDetailsActivity.class);
+            Intent intent = new Intent(MoviesListingAdapter.this.moviesListingFragment.getContext(), MovieDetailsActivity.class);
             Bundle extras = new Bundle();
             assertTrue(movie != null);
             extras.putParcelable(Constants.MOVIE, movie);
             intent.putExtras(extras);
-            MoviesListingAdapter.this.moviesListFragment.startActivity(intent);
+            MoviesListingAdapter.this.moviesListingFragment.startActivity(intent);
         }
     }
 
@@ -90,7 +86,7 @@ class MoviesListingAdapter extends RecyclerView.Adapter<MoviesListingAdapter.Vie
         holder.itemView.setOnClickListener(holder);
         holder.movie = movies.get(position);
         holder.tv_item_movie_name.setText(holder.movie.getTitle());
-        Glide.with(this.moviesListFragment)
+        Glide.with(this.moviesListingFragment)
                 .load(Api.getPosterPath(holder.movie.getPosterPath()))
                 .asBitmap()
                 .diskCacheStrategy(DiskCacheStrategy.RESULT)

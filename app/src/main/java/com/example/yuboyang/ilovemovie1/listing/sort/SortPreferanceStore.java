@@ -11,11 +11,11 @@ import javax.inject.Inject;
  * Created by yuboyang on 10/15/17.
  */
 
-public class SortPreferance {
+public class SortPreferanceStore {
     private static final String TAG = "SortingDialogFragment";
     private final Context context;
 
-    public SortPreferance(Context context) {
+    public SortPreferanceStore(Context context) {
         this.context = context;
     }
 

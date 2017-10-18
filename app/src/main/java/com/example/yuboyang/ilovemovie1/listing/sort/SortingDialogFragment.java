@@ -2,25 +2,19 @@ package com.example.yuboyang.ilovemovie1.listing.sort;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.nfc.Tag;
 import android.os.Bundle;
-import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
-import android.support.v7.view.menu.ListMenuPresenter;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.example.yuboyang.ilovemovie1.BaseApplication;
 import com.example.yuboyang.ilovemovie1.R;
 import com.example.yuboyang.ilovemovie1.listing.MoviesListingPresenter;
-import com.example.yuboyang.ilovemovie1.listing.MoviesListingPresenterImpl;
 
 import javax.inject.Inject;
 
@@ -32,10 +26,11 @@ import butterknife.ButterKnife;
  */
 
 public class SortingDialogFragment extends DialogFragment {
+    private static final String TAG = "SortingDialogFragment";
     @Inject
     MoviesListingPresenter listingPresenter;
     @Inject
-    SortPreferance sortPreferance;
+    SortPreferanceStore sortPreferanceStore;
 
     @Bind(R.id.radio_group)
     RadioGroup radioGroup;
@@ -50,7 +45,7 @@ public class SortingDialogFragment extends DialogFragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         BaseApplication application = (BaseApplication)getActivity().getApplication();
-        application.getAppComponent().inject(this);
+        application.getListComponent().inject(this);
         setRetainInstance(true);
     }
 
@@ -70,10 +65,11 @@ public class SortingDialogFragment extends DialogFragment {
 
     private void initView() {
         this.restoreLastOption();
-        radioGroup.setOnCheckedChangeListener(this::onCheckedChanged);
+//        radioGroup.setOnCheckedChangeListener(this::onCheckedChanged);
     }
 
     private void onCheckedChanged(RadioGroup radioGroup, int i) {
+        Log.d(TAG, "onCheckedChanged: i: " + i);
         switch (i) {
             case R.id.radio_popular:
                 onPopularMoviesSelected();
@@ -88,9 +84,8 @@ public class SortingDialogFragment extends DialogFragment {
         dismiss();
     }
 
-
     public void restoreLastOption() {
-        int sortYype = sortPreferance.getSelectedOption();
+        int sortYype = sortPreferanceStore.getSelectedOption();
         if (sortYype == SortType.MOST_POPULAR.getValue()) {
             onPopularMoviesSelected();
         } else if (sortYype == SortType.HIGHEST_RATED.getValue()) {
@@ -105,7 +100,6 @@ public class SortingDialogFragment extends DialogFragment {
     private void onPopularMoviesSelected() {
         radio_favorite.setChecked(true);
     }
-    
 
     private void onFavoritesSelected() {
         radio_favorite.setChecked(true);
@@ -115,10 +109,8 @@ public class SortingDialogFragment extends DialogFragment {
         radio_rated.setChecked(true);
     }
 
-
     @Override
     public void dismiss() {
         super.dismiss();
     }
-
 }

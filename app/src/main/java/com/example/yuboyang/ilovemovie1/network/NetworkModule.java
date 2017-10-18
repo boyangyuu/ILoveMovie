@@ -19,7 +19,6 @@ import java.util.concurrent.TimeUnit;
 /**
  * Created by yuboyang on 10/8/17.
  */
-
 @Module
 public class NetworkModule {
     public static final int CONNECT_TIMEOUT_IN_MS = 30000;
@@ -36,7 +35,6 @@ public class NetworkModule {
     OkHttpClient okHttpClient(RequestInterceptor requestInterceptor) {
         HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
         loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-
         return new okhttp3.OkHttpClient.Builder()
                 .connectTimeout(CONNECT_TIMEOUT_IN_MS, TimeUnit.MILLISECONDS)
                 .addInterceptor(loggingInterceptor)
@@ -59,6 +57,7 @@ public class NetworkModule {
     @Singleton
     @Provides
     MovieWebService movieWebService(Retrofit retrofit) {
+        System.out.println("movieWebService yby");
         return retrofit.create(MovieWebService.class);
     }
 

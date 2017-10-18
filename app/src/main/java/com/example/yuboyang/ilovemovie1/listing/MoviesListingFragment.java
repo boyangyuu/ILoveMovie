@@ -1,12 +1,10 @@
 package com.example.yuboyang.ilovemovie1.listing;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,7 +14,6 @@ import com.example.yuboyang.ilovemovie1.BaseApplication;
 import com.example.yuboyang.ilovemovie1.Movie;
 import com.example.yuboyang.ilovemovie1.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -29,7 +26,7 @@ import butterknife.ButterKnife;
  * <p/>
  * interface.
  */
-public class MoviesListFragment extends Fragment implements MoviesListingView {
+public class MoviesListingFragment extends Fragment implements MoviesListingView {
 
     @Inject
     MoviesListingPresenter moviesPresenter;
@@ -50,7 +47,7 @@ public class MoviesListFragment extends Fragment implements MoviesListingView {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         BaseApplication application = (BaseApplication)getActivity().getApplication();
-        application.getAppComponent().inject(this);
+        application.createListingComponent().inject(this);
     }
 
     @Nullable

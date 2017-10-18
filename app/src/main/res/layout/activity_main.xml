@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@+id/fragment_list"
-        android:name="com.example.yuboyang.ilovemovie1.listing.MoviesListFragment"
+        android:name="com.example.yuboyang.ilovemovie1.listing.MoviesListingFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:layout="@layout/fragment_movies"/>

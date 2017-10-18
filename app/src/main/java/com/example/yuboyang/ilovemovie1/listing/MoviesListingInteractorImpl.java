@@ -3,13 +3,11 @@ package com.example.yuboyang.ilovemovie1.listing;
 import android.util.Log;
 
 import com.example.yuboyang.ilovemovie1.Movie;
-import com.example.yuboyang.ilovemovie1.listing.sort.SortPreferance;
+import com.example.yuboyang.ilovemovie1.listing.sort.SortPreferanceStore;
 import com.example.yuboyang.ilovemovie1.listing.sort.SortType;
 import com.example.yuboyang.ilovemovie1.network.MovieWebService;
 
 import java.util.List;
-
-import javax.inject.Inject;
 
 import io.reactivex.Observable;
 
@@ -22,17 +20,17 @@ import static android.content.ContentValues.TAG;
 public class MoviesListingInteractorImpl implements MoviesListingInteractor {
 
 
-    private final SortPreferance sortPreferance;
+    private final SortPreferanceStore sortPreferanceStore;
     MovieWebService movieWebService;
 
-    public MoviesListingInteractorImpl(MovieWebService webService, SortPreferance sortPreferance) {
+    public MoviesListingInteractorImpl(MovieWebService webService, SortPreferanceStore sortPreferanceStore) {
         this.movieWebService = webService;
-        this.sortPreferance = sortPreferance;
+        this.sortPreferanceStore = sortPreferanceStore;
     }
 
     @Override
     public Observable<List<Movie>> fetchMovies() {
-        int sortType = sortPreferance.getSelectedOption();
+        int sortType = sortPreferanceStore.getSelectedOption();
         if (sortType == SortType.MOST_POPULAR.getValue()) {
             return this.movieWebService
                     .popularMovies()

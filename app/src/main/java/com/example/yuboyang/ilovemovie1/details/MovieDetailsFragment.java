@@ -78,7 +78,7 @@ public class MovieDetailsFragment extends Fragment implements MovieDetailView {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         BaseApplication application = (BaseApplication) getActivity().getApplication();
-        application.getAppComponent().inject(this);
+        application.createDetailsComponent().inject(this);
         Movie movie = getActivity().getIntent().getParcelableExtra(Constants.MOVIE);
         this.movie = movie;
     }
