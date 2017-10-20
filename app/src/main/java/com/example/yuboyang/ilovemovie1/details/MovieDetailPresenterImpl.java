@@ -6,6 +6,7 @@ import com.example.yuboyang.ilovemovie1.ReviewWrapper;
 import com.example.yuboyang.ilovemovie1.VideoWrapper;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
 
 /**
@@ -16,6 +17,7 @@ public class MovieDetailPresenterImpl implements MovieDetailPresenter {
     private static final String TAG = "MovieDetailPresenterImpl";
     private final MovieDetailInteractor interactor;
     private MovieDetailView view;
+    private CompositeDisposable compositeDisposable = new CompositeDisposable();
 
     public MovieDetailPresenterImpl(MovieDetailInteractor interactor) {
         this.interactor = interactor;
@@ -51,6 +53,11 @@ public class MovieDetailPresenterImpl implements MovieDetailPresenter {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(this::onTrailsFetchSuccess, this::onTrailsFetchFailed);
+    }
+
+    @Override
+    public void destroy() {
+
     }
 
     private void onTrailsFetchSuccess(VideoWrapper videoWrapper) {

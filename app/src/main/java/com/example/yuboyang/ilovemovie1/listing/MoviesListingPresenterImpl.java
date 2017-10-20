@@ -21,12 +21,13 @@ public class MoviesListingPresenterImpl implements MoviesListingPresenter {
 
     public MoviesListingPresenterImpl(MoviesListingInteractor interactor) {
         this.interceptor = interactor;
-        displayMovies();
+        this.compositeDisposable = new CompositeDisposable();
     }
 
     @Override
     public void setView(MoviesListingView view) {
         this.view = view;
+        displayMovies();
     }
 
     @Override
