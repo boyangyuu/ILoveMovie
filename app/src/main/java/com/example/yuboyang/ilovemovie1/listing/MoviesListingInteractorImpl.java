@@ -31,6 +31,7 @@ public class MoviesListingInteractorImpl implements MoviesListingInteractor {
     @Override
     public Observable<List<Movie>> fetchMovies() {
         int sortType = sortPreferanceStore.getSelectedOption();
+        Log.i(TAG, "fetchMovies: sortType" + sortType);
         if (sortType == SortType.MOST_POPULAR.getValue()) {
             return this.movieWebService
                     .popularMovies()
@@ -41,9 +42,13 @@ public class MoviesListingInteractorImpl implements MoviesListingInteractor {
                     .map(moviesWrapper -> moviesWrapper.getMovies());
         } else if (sortType == SortType.FAVORITES.getValue()) {
             Log.i(TAG, "fetchMovies: Favorites");
+            //todo fake data
+            return this.movieWebService
+                    .popularMovies()
+                    .map(moviesWrapper -> moviesWrapper.getMovies());
         } else {
-
+            assert false;
+            return null;
         }
-        return null;
     }
 }

@@ -77,6 +77,7 @@ public class MoviesListingFragment extends Fragment implements MoviesListingView
     public void onDestroy() {
         super.onDestroy();
         ButterKnife.unbind(this);
+        this.moviesPresenter.onDestroy();
         activity = null;
     }
 

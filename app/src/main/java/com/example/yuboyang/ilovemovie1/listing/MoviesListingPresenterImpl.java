@@ -4,11 +4,10 @@ import com.example.yuboyang.ilovemovie1.Movie;
 
 import java.util.List;
 
-import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.internal.schedulers.IoScheduler;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
-import okhttp3.Interceptor;
 
 /**
  * Created by yuboyang on 10/9/17.
@@ -18,6 +17,7 @@ public class MoviesListingPresenterImpl implements MoviesListingPresenter {
     private MoviesListingView view;
 
     private MoviesListingInteractor interceptor;
+    private CompositeDisposable compositeDisposable;
 
     public MoviesListingPresenterImpl(MoviesListingInteractor interactor) {
         this.interceptor = interactor;
@@ -32,10 +32,11 @@ public class MoviesListingPresenterImpl implements MoviesListingPresenter {
     @Override
     public void displayMovies() {
         showLoading();
-        interceptor.fetchMovies()
+        Disposable disposable = interceptor.fetchMovies()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(this::onMovieFetchSuccess, this::onMoviesFetchFailed);
+        compositeDisposable.add(disposable);
     }
 
     private void onMoviesFetchFailed(Throwable throwable) {
@@ -45,8 +46,14 @@ public class MoviesListingPresenterImpl implements MoviesListingPresenter {
     private void onMovieFetchSuccess(List<Movie> movies) {
         this.view.showMovies(movies);
     }
+
     @Override
     public void showLoading() {
         // TODO: 10/9/17
+    }
+
+    @Override
+    public void onDestroy() {
+        compositeDisposable.dispose();
     }
 }

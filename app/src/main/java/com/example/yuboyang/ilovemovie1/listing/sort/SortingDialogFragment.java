@@ -65,48 +65,36 @@ public class SortingDialogFragment extends DialogFragment {
 
     private void initView() {
         this.restoreLastOption();
-//        radioGroup.setOnCheckedChangeListener(this::onCheckedChanged);
+        radioGroup.setOnCheckedChangeListener(this::onCheckedChanged);
     }
 
     private void onCheckedChanged(RadioGroup radioGroup, int i) {
-        Log.d(TAG, "onCheckedChanged: i: " + i);
         switch (i) {
             case R.id.radio_popular:
-                onPopularMoviesSelected();
-                listingPresenter.displayMovies();
+                sortPreferanceStore.setSelectedOption(SortType.MOST_POPULAR);
+                break;
             case R.id.radio_rated:
-                onHighestRatedMoviesSelected();
-                listingPresenter.displayMovies();
+                sortPreferanceStore.setSelectedOption(SortType.HIGHEST_RATED);
+                break;
             case R.id.radio_favorite:
-                onFavoritesSelected();
-                listingPresenter.displayMovies();
+                sortPreferanceStore.setSelectedOption(SortType.FAVORITES);
+                break;
         }
+        listingPresenter.displayMovies();
         dismiss();
     }
 
     public void restoreLastOption() {
         int sortYype = sortPreferanceStore.getSelectedOption();
         if (sortYype == SortType.MOST_POPULAR.getValue()) {
-            onPopularMoviesSelected();
+            radio_popular.setChecked(true);
         } else if (sortYype == SortType.HIGHEST_RATED.getValue()) {
-            onHighestRatedMoviesSelected();
+            radio_rated.setChecked(true);
         } else if (sortYype == SortType.FAVORITES.getValue()) {
-            onFavoritesSelected();
+            radio_favorite.setChecked(true);
         } else {
             Log.d("tag", "restoreLastOption: error");
         }
-    }
-    
-    private void onPopularMoviesSelected() {
-        radio_favorite.setChecked(true);
-    }
-
-    private void onFavoritesSelected() {
-        radio_favorite.setChecked(true);
-    }
-
-    private void onHighestRatedMoviesSelected() {
-        radio_rated.setChecked(true);
     }
 
     @Override

@@ -21,13 +21,13 @@ public class SortPreferanceStore {
 
     public int getSelectedOption() {
         SortType defaultType = SortType.MOST_POPULAR;
-        SharedPreferences sharedPref = context.getSharedPreferences(TAG, Context.MODE_PRIVATE);
+        SharedPreferences sharedPref = context.getApplicationContext().getSharedPreferences(TAG, Context.MODE_PRIVATE);
         int type = sharedPref.getInt(SortType.PREFER, defaultType.getValue());
         return type;
     }
 
-    public void setSelectedOption(SortType selectedOption) {
-        SharedPreferences sharedPref = context.getSharedPreferences(TAG, Context.MODE_PRIVATE);
+    void setSelectedOption(SortType selectedOption) {
+        SharedPreferences sharedPref = context.getApplicationContext().getSharedPreferences(TAG, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putInt(SortType.PREFER, selectedOption.getValue());
         editor.apply();

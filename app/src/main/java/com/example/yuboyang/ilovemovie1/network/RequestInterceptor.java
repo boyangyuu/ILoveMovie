@@ -31,8 +31,6 @@ public class RequestInterceptor implements Interceptor {
                 .build();
 
         Request request = original.newBuilder().url(url).build();
-        //// TODO: 10/9/17
-        System.out.println("yby intercept");
         return chain.proceed(request);
     }
 }

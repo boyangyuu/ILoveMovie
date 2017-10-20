@@ -57,7 +57,6 @@ public class NetworkModule {
     @Singleton
     @Provides
     MovieWebService movieWebService(Retrofit retrofit) {
-        System.out.println("movieWebService yby");
         return retrofit.create(MovieWebService.class);
     }
 
