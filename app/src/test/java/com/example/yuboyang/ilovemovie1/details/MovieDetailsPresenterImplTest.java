@@ -39,10 +39,8 @@ public class MovieDetailsPresenterImplTest {
     Movie movie;
     @Mock
     VideoWrapper videoWrapper;
-    //List<Video> videos;
     @Mock
     ReviewWrapper reviewWrapper;
-//    List<Review> reviews;
 
     private MovieDetailPresenterImpl movieDetailsPresenter;
 
@@ -91,48 +89,13 @@ public class MovieDetailsPresenterImplTest {
         testScheduler1.triggerActions(); // 为什么在前面
         observer.assertNoErrors();
         observer.assertComplete();
-
         verify(view).showTrailers(videoWrapper.getVideos());
-
-
-
-//        TestScheduler testScheduler = new TestScheduler();
-//        TestObserver<List<Video>> testObserver = new TestObserver<>();
-//        Observable<VideoWrapper> response = Observable.just(videoWrapper)
-//                .subscribeOn(testScheduler)
-//                .observeOn(AndroidSchedulers.mainThread());
-//        when(movieDetailsInteractor.fetchVideos(anyString())).thenReturn(response);
-//
-//        movieDetailsPresenter.displayTrails(movie.getId());
-//        testScheduler.triggerActions();
-//        testObserver.assertNoErrors();
-//        testObserver.assertComplete();
-//        verify(view).showTrailers(videoWrapper.getVideos());
-
-
-//        TestScheduler testScheduler = new TestScheduler();
-//        TestObserver<List<Video>> testObserver = new TestObserver<>();
-//        Observable<List<Video>> responseObservable = Observable.just(videos)
-//                .subscribeOn(testScheduler)
-//                .observeOn(AndroidSchedulers.mainThread());
-//
-//        responseObservable.subscribe(testObserver);
-//        when(movieDetailsInteractor.getTrailers(anyString())).thenReturn(responseObservable);
-//
-//        movieDetailsPresenter.showTrailers(movie);
-//        testScheduler.triggerActions();
-//
-//        testObserver.assertNoErrors();
-//        testObserver.assertComplete();
-//        verify(view).showTrailers(videos);
     }
 
     @Test
     public void shouldFailSilentlyWhenNoTrailers() throws Exception {
         when(movieDetailsInteractor.fetchVideos(anyString())).thenReturn(Observable.error(new SocketTimeoutException()));
-
         movieDetailsPresenter.displayTrails(movie.getId());
-
         verifyZeroInteractions(view);
     }
 

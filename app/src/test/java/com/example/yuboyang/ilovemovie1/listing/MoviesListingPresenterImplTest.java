@@ -48,6 +48,9 @@ public class MoviesListingPresenterImplTest {
 
     @Test
     public void shouldBeAbleToDisplayMovies() {
+//        System.out.println(MainThread);
+
+
         TestScheduler testScheduler = new TestScheduler();
         TestObserver<List<Movie>> testObserver = new TestObserver<>();
         Observable<List<Movie>> responseObservable = Observable.just(movies)
@@ -64,6 +67,8 @@ public class MoviesListingPresenterImplTest {
         testObserver.onComplete();
         verify(view).showMovies(movies);
     }
+
+
 
 
 }

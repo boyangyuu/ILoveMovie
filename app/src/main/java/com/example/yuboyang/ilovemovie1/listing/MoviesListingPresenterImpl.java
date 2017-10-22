@@ -4,6 +4,7 @@ import com.example.yuboyang.ilovemovie1.Movie;
 
 import java.util.List;
 
+import io.reactivex.Flowable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
@@ -37,6 +38,8 @@ public class MoviesListingPresenterImpl implements MoviesListingPresenter {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(this::onMovieFetchSuccess, this::onMoviesFetchFailed);
+
+
         compositeDisposable.add(disposable);
     }
 
